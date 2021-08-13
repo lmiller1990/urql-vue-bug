@@ -28,8 +28,8 @@ These videos demo both the working app and bug:
 
 ### Working 
 
-![](./demo_broken.mov)
+Watch [demo_broken.mov](https://github.com/lmiller1990/urql-vue-bug/blob/main/demo_broken.mov).
 
 ### Bug
 
-![](./demo_broken.mov)
+Watch [demo_works.mov](https://github.com/lmiller1990/urql-vue-bug/blob/main/demo_works.mov).
