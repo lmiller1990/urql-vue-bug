@@ -1,7 +1,4 @@
-## EDIT: I thought this was a `@urql/vue` bug but the same problem is happening with React - I think I am misunderstanding something.
-
-
-This repo demonstrates a bug in `@urql/vue`. The problem is when a null field becomes populated, a re-render is not triggered and the UI is stuck in a stale state.
+This repo demonstrates a problem I'm having with both `@urql/vue` and the React bindings. The problem is when a null field becomes populated, a re-render is not triggered and the UI is stuck in a stale state.
 
 ## Reproduction:
 
@@ -11,5 +8,5 @@ This repo demonstrates a bug in `@urql/vue`. The problem is when a null field be
 - Go to `localhost:3000` 
 - click "Login"
 - notice the UI does **not** re-render.
-- I reproduced with both React and Vue.
+- I reproduced with both React and Vue - both are shown in the reproduction.
 
