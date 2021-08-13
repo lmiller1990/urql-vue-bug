@@ -7,7 +7,13 @@ import AppWithoutBug from './AppWithoutBug.vue'
 
 export const client = createClient({
   url: 'http://localhost:4000/graphql',
-  exchanges: [dedupExchange, cacheExchange({}), fetchExchange],
+  exchanges: [dedupExchange, cacheExchange({
+    keys: {
+      App: (data) => data.__typename,
+      NonNullableViewer: (data) => data.username,
+      NullableViewer: data => data.username
+    }
+  }), fetchExchange],
 });
 
 const Root = defineComponent({
