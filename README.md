@@ -1,4 +1,35 @@
-This repo demonstrates a bug in `@urql/vue`. I think the problem is reactivity is not triggered when a null field becomes populated - eg `viewer` is nullable, and going from `viewer: null` to `viewer: { username: "blah" }` does *not* trigger a re-render. The Network tab shows the request is getting made, but the UI is not updated. Refreshing shows the new state. I think this is a bug at the integration between `@urql/core` and `@vue/reactivity`.
+This repo demonstrates a bug in `@urql/vue`. The problem is when a null field becomes populated, a re-render is not triggered and the UI is stuck in a stale state.
+
+Eg, consider:
+
+```gql
+type Viewer {
+  username
+}
+
+type Query {
+  viewer: Viewer # is nullable
+}
+
+type Mutation {
+  login: Viewer
+}
+```
+
+`login` does something like this:
+
+```ts
+login: (_, ctx) => {
+  // ctx.viewer is null
+  ctx.viewer = { username: 'blah' }
+  // now it's not null
+  return ctx.viewer
+}
+```
+
+When executing a `login` mutation, `urql` recognises that `viewer` changed and re-queries, but the UI is **not** updated. This is not the case if `viewer` just has some fields modified (see demo code). So the problem is `null` -> `{}` changes do not trigger a re-render.
+
+I think the problem is reactivity is not triggered when a null field becomes populated - eg `viewer` is nullable, and going from `viewer: null` to `viewer: { username: "blah" }` does *not* trigger a re-render. The Network tab shows the request is getting made, but the UI is not updated. Refreshing shows the new state. I think this is a bug at the integration between `@urql/core` and `@vue/reactivity`.
 
 ## Reproduction
 
