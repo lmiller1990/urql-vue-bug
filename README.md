@@ -28,8 +28,8 @@ These videos demo both the working app and bug:
 
 ### Working 
 
-![](./demo_broken.mov]
+![](./demo_broken.mov)
 
 ### Bug
 
-![](./demo_broken.mov]
+![](./demo_broken.mov)
