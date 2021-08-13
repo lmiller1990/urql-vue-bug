@@ -87,6 +87,7 @@ app.use(
           return ctx.app
         },
         loginApp: (_: any, ctx: typeof context) => { 
+          console.log('loginApp')
           ctx.app.viewer = {
             authenticated: true,
             username: 'lachlan',
@@ -95,6 +96,7 @@ app.use(
           return ctx.app
         },
         logoutApp: (_: any, ctx: typeof context) => { 
+          console.log('logoutApp')
           ctx.app.viewer = {
             authenticated: false,
           }
@@ -106,6 +108,7 @@ app.use(
           return ctx.viewer;
         },
         login: (_: any, ctx: typeof context) => {
+          console.log('login')
           ctx.viewer = {
             username: 'lachlan',
             authToken: 'token'
@@ -113,6 +116,7 @@ app.use(
           return ctx.viewer
         },
         logout (_: any, ctx: typeof context) {
+          console.log('logout')
           ctx.viewer = null
           return ctx.viewer
         }
