@@ -5,8 +5,10 @@ export const requestPolicy: RequestPolicy = 'network-only'
 export const LoginBug = gql`
   mutation M1 {
     login {
-      authToken
-      username
+      viewer {
+        authToken
+        username
+      }
     }
   }
 `
@@ -14,8 +16,10 @@ export const LoginBug = gql`
 export const LogoutBug = gql`
   mutation M2 {
     logout {
-      authToken
-      username
+      viewer {
+        authToken
+        username
+      }
     }
   }
 `
