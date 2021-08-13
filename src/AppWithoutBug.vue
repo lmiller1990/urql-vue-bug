@@ -12,12 +12,13 @@ import { useQuery, useMutation } from '@urql/vue'
 import { 
   Auth,
   Login,
-  Logout
+  Logout,
+  requestPolicy
 } from "./queries";
 
 export default defineComponent({
   setup() {
-    const { data: appData } = useQuery({ query: Auth })
+    const { data: appData } = useQuery({ query: Auth, requestPolicy })
     const count = ref(0)
 
     const login = useMutation(Login)

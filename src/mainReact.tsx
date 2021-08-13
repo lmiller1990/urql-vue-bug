@@ -8,7 +8,8 @@ import {
   LogoutBug,
   Auth,
   Login,
-  Logout
+  Logout,
+  requestPolicy
 } from "./queries";
 
 const CompBug = () => {
@@ -42,6 +43,7 @@ const createComp = (title, authQuery, loginMut, logoutMut) => {
   return () => {
     const [result, reexecuteQuery] = useQuery({
       query: authQuery,
+      requestPolicy
     });
 
     const [_loginResult, login] = useMutation(loginMut)
@@ -55,7 +57,6 @@ const createComp = (title, authQuery, loginMut, logoutMut) => {
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>Oh no... {error.message}</p>;
 
-console.log(title, result.data)
     const dataJSON = title === 'Without bug'
       ? result.data?.app?.viewer?.username
       : result.data?.viewer?.username

@@ -18,4 +18,4 @@ const Root = defineComponent({
   }
 })
 
-createApp(Root).mount('#app')
+// createApp(Root).mount('#app')

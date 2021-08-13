@@ -1,5 +1,6 @@
-import { gql } from "urql"
+import { gql, RequestPolicy } from "urql"
 
+export const requestPolicy: RequestPolicy = 'network-only'
 
 export const LoginBug = gql`
   mutation M1 {

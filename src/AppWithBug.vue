@@ -14,12 +14,13 @@ import { useQuery, useMutation } from '@urql/vue'
 import { 
   AuthBug,
   LoginBug,
-  LogoutBug
+  LogoutBug,
+  requestPolicy
 } from "./queries";
 
 export default defineComponent({
   setup() {
-    const { data: viewerData } = useQuery({ query: AuthBug })
+    const { data: viewerData } = useQuery({ query: AuthBug, requestPolicy })
     const count = ref(0)
 
     const login = useMutation(LoginBug)
