@@ -1,10 +1,19 @@
-import { createClient, provideClient } from '@urql/vue';
+import { createClient, dedupExchange, fetchExchange, provideClient } from '@urql/vue';
 import { createApp, defineComponent, h } from 'vue'
+import { cacheExchange } from '@urql/exchange-graphcache';
+
 import AppWithBug from './AppWithBug.vue'
 import AppWithoutBug from './AppWithoutBug.vue'
 
 export const client = createClient({
   url: 'http://localhost:4000/graphql',
+  exchanges: [dedupExchange, cacheExchange({
+    keys: {
+      App: (data) => data.__typename,
+      NonNullableViewer: (data) => data.username,
+      NullableViewer: data => data.username
+    }
+  }), fetchExchange],
 });
 
 const Root = defineComponent({

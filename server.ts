@@ -25,8 +25,8 @@ const graphqlSchema = buildSchema(`
   }
 
   type Mutation {
-    login: NullableViewer
-    logout: NullableViewer
+    login: Query
+    logout: Query
 
     loginApp: App!
     logoutApp: App!
@@ -113,12 +113,12 @@ app.use(
             username: 'lachlan',
             authToken: 'token'
           }
-          return ctx.viewer
+          return ctx
         },
         logout (_: any, ctx: typeof context) {
           console.log('logout')
           ctx.viewer = null
-          return ctx.viewer
+          return ctx
         }
       },
     };
